@@ -1,0 +1,118 @@
+package Thread;
+
+public class  ThreadClass implements Runnable {
+	@Override
+	public void run() {
+		for(int i=0;i<100;i++) {
+			System.out.println(i);
+		}
+	}
+	public static void main(String[] args) {
+		
+
+	}
+
+}
+main.java:
+entry point of application
+model:
+POJO CLASS(PLAIN OLD JAVA OBJECT)
+controller:
+UI and service
+service:
+business logic
+repository:
+data storage
+
+main class will run controller
+1)
+1:1
+package controller;
+
+import java.util.Scanner;
+
+public class CustomerController {
+	boolean isAct = true;
+	 Scanner sc = new Scanner(System.in);
+	public void CustomerControl() {
+		
+		while(isAct) {
+		System.out.println("Good Morning");
+		System.out.println("Enter Your choice:");
+		System.out.println("1.Add new");
+		System.out.println("2.Existing Customer:");
+		System.out.println("3.Update My account");
+		System.out.println("4.Remove my account");
+	    
+	    int choice = sc.nextInt();
+	    switch (choice) {
+	    case 1:
+	    	System.out.println("Welcome Enter your details:");
+	    	break;
+	    case 2:
+	    	System.out.println("Welcome");
+	    	break;
+	    case 3:
+	    	System.out.println("Welcome");
+	    	break;
+	    case 4:
+	    	System.out.println("Are you sure");
+	    	char ch = sc.next().toLowerCase().charAt(0);
+	    	if(ch=='y') {
+	    		System.out.println("DONT COME");
+	    		isAct = false;
+	    	}
+	    		break;
+	    case 5:
+	    	System.out.println("Are you sure");
+	    	char ch1 = sc.next().toLowerCase().charAt(0);
+	    	if(ch1=='y') {
+	    		System.out.println("THANKYOU");
+	    		isAct = false;
+	    	break;
+	    	
+	    }
+	    }
+	sc.close();
+	}
+  }
+
+}
+
+1:2
+import controller.CustomerController;
+public class Main {
+
+	public static void main(String[] args) {
+		CustomerController cusmc = new CustomerController();
+		cusmc.CustomerControl();
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
