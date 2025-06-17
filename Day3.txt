@@ -1,0 +1,61 @@
+
+ task 1:- class Main {
+    public static void main(String[] args) {
+        StringBuffer name = new StringBuffer();
+        name.append("Dhilip");
+        System.out.println(name.reverse);
+        System.out.println(name);
+    }
+}
+
+
+
+
+
+task2:-class Main {
+    public static void main(String[] args) {
+        
+    
+       
+       String name="Dharshini";
+       int n=name.length();
+       int count =0;
+       for(int i=0;i<n;i++)
+           {
+               System.out.println(name.charAt(i));
+           
+           if(name.charAt(i)=='a'||name.charAt(i)=='e'|| name.charAt(i)=='o'|| name.charAt(i)=='u'|| name.charAt(i)=='i')
+           count++;
+           }
+           
+           System.out.println(count);
+    }
+           
+}
+ 
+
+taks 3:-class Main {
+     public static void main(String[] args) {
+        
+    
+       
+       String name="Dharshini";
+       int n=name.length();
+       int count =0;
+       for(int i=0;i<n;i++)
+           {
+               System.out.println(name.charAt(i));
+           
+           if(name.charAt(i)=='a'||name.charAt(i)=='e'|| name.charAt(i)=='o'|| name.charAt(i)=='u'|| name.charAt(i)=='i')
+           count++;
+           }
+           elseif(name.charAt(i)>='a'&& name.charAt('z'))
+           {
+               concount++;
+           }
+           
+           System.out.println(count);
+    }
+           
+}
+       
