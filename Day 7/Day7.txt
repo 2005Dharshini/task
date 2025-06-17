@@ -1,0 +1,93 @@
+MariaDB [kg]> select * from course;
+ERROR 1146 (42S02): Table 'kg.course' doesn't exist
+MariaDB [kg]> create table stud (
+    ->     StudentID int,
+    ->     FirstName VARCHAR(50),
+    ->     LastName VARCHAR(50),
+    ->     Age INT,
+    ->     CourseID INT
+    -> );
+Query OK, 0 rows affected (0.021 sec)
+
+MariaDB [kg]> CREATE TABLE Cour(
+    ->     CourseID int,
+    ->     CourseName VARCHAR(100),
+    ->     CourseFee DECIMAL(10, 2));
+Query OK, 0 rows affected (0.063 sec)
+
+MariaDB [kg]> INSERT INTO Cour (CourseID, CourseName, CourseFee) VALUES
+    -> (1, 'Computer Science', 1500.00),
+    -> (2, 'Mathematics', 1200.00),
+    -> (3, 'Physics', 1300.00),
+    -> (4, 'Chemistry', 1250.00),
+    -> (5, 'Biology', 1100.00);
+Query OK, 5 rows affected (0.038 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [kg]> INSERT INTO Student (StudentID, FirstName, LastName, Age, CourseID) VALUES
+    -> (101, 'Alice', 'Smith', 20, 1),
+    -> (102, 'Bob', 'Johnson', 22, 2),
+    -> (103, 'Charlie', 'Brown', 21, 3),
+    -> (104, 'Diana', 'White', 19, 4),
+    -> (105, 'Ethan', 'Black', 23, 5);
+ERROR 1054 (42S22): Unknown column 'StudentID' in 'field list'
+MariaDB [kg]> INSERT INTO Stud (StudentID, FirstName, LastName, Age, CourseID) VALUES
+    -> (101, 'Alice', 'Smith', 20, 1),
+    -> (102, 'Bob', 'Johnson', 22, 2),
+    -> (103, 'Charlie', 'Brown', 21, 3),
+    -> (104, 'Diana', 'White', 19, 4),
+    -> (105, 'Ethan', 'Black', 23, 5);
+Query OK, 5 rows affected (0.031 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [kg]> UPDATE Cour
+    -> SET CourseFee = 1350.00
+    -> WHERE CourseName = 'Physics';
+Query OK, 1 row affected (0.054 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [kg]> CREATE TABLE PERSON (
+    ->     CustomerID INT PRIMARY KEY,
+    ->     Name VARCHAR(100),
+    ->     Email VARCHAR(100),
+    ->     City VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.050 sec)
+
+MariaDB [kg]> INSERT INTO PERSON(CustomerID, Name, Email, City) VALUES
+    -> (1, 'Alice Johnson', 'alice.johnson@example.com', 'New York'),
+    -> (2, 'Bob Smith', 'bob.smith@example.com', 'Los Angeles'),
+    -> (3, 'Charlie Brown', 'charlie.brown@example.com', 'Chicago');
+Query OK, 3 rows affected (0.053 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [kg]>
+MariaDB [kg]> CREATE TABLE Products (
+    ->     ProductID INT PRIMARY KEY,
+    ->     ProductName VARCHAR(100),
+    ->     Price DECIMAL(10,2)
+    -> );
+Query OK, 0 rows affected (0.034 sec)
+
+MariaDB [kg]>
+MariaDB [kg]> INSERT INTO Products (ProductID, ProductName, Price) VALUES
+    -> (1, 'Laptop', 999.99),
+    -> (2, 'Smartphone', 699.99),
+    -> (3, 'Headphones', 199.99);
+Query OK, 3 rows affected (0.006 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [kg]>
+MariaDB [kg]> CREATE TABLE CREDITORS(
+    ->     CustomerID INT PRIMARY KEY,
+    ->     Name VARCHAR(100),
+    ->     Email VARCHAR(100),
+    ->     City VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.030 sec)
+
+MariaDB [kg]>
+MariaDB [kg]> INSERT INTO Customers (CustomerID, Name, Email, City) VALUES
+    -> (1, 'Alice Johnson', 'alice.johnson@example.com', 'New York'),
+    -> (2, 'Bob Smith', 'bob.smith@example.com', 'Los Angeles'),
+    -> (3, 'Charlie Brown', 'charlie.brown@example.com', 'Chicago');
