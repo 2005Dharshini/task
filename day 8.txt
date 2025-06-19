@@ -81,3 +81,106 @@ MariaDB [kg]> SELECT * FROM Books
 |      4 | Physics Experiments | Jane Smith | 50.00 |
 +--------+---------------------+------------+-------+
 2 rows in set (0.001 sec)
+
+Main
+
+
+
+
+
+ INSERT INTO Customers (CustomerID, Name, Age, City, Email, TotalPurchaseAmount, JoinDate) VALUES
+    -> (1, 'Alice Johnson', 28, 'New York', 'alice@example.com', 1200.50, '2022-01-15'),
+    -> (2, 'Bob Smith', 35, 'Los Angeles', 'bob@example.com', 800.00, '2021-11-10'),
+    -> (3, 'Charlie Brown', 42, 'Chicago', 'charlie@example.com', 1500.00, '2020-06-25'),
+    -> (4, 'Diana Prince', 30, 'New York', 'diana@example.com', 500.75, '2023-03-18'),
+    -> (5, 'Ethan Hunt', 25, 'San Francisco', 'ethan@example.com', 3000.00, '2022-12-05');
+Query OK, 5 rows affected (0.004 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [kg]> SELECT * FROM Customers
+    -> WHERE Age > 30;
++------------+---------------+------+-------------+---------------------+---------------------+------------+
+| CustomerID | Name          | Age  | City        | Email               | TotalPurchaseAmount | JoinDate   |
++------------+---------------+------+-------------+---------------------+---------------------+------------+
+|          2 | Bob Smith     |   35 | Los Angeles | bob@example.com     |              800.00 | 2021-11-10 |
+|          3 | Charlie Brown |   42 | Chicago     | charlie@example.com |             1500.00 | 2020-06-25 |
++------------+---------------+------+-------------+---------------------+---------------------+------------+
+2 rows in set (0.000 sec)
+
+MariaDB [kg]> SELECT * FROM Customers
+    -> WHERE City = 'New York';
++------------+---------------+------+----------+-------------------+---------------------+------------+
+| CustomerID | Name          | Age  | City     | Email             | TotalPurchaseAmount | JoinDate   |
++------------+---------------+------+----------+-------------------+---------------------+------------+
+|          1 | Alice Johnson |   28 | New York | alice@example.com |             1200.50 | 2022-01-15 |
+|          4 | Diana Prince  |   30 | New York | diana@example.com |              500.75 | 2023-03-18 |
++------------+---------------+------+----------+-------------------+---------------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [kg]> SELECT * FROM Customers
+    -> WHERE TotalPurchaseAmount > 1000;
++------------+---------------+------+---------------+---------------------+---------------------+------------+
+| CustomerID | Name          | Age  | City          | Email               | TotalPurchaseAmount | JoinDate   |
++------------+---------------+------+---------------+---------------------+---------------------+------------+
+|          1 | Alice Johnson |   28 | New York      | alice@example.com   |             1200.50 | 2022-01-15 |
+|          3 | Charlie Brown |   42 | Chicago       | charlie@example.com |             1500.00 | 2020-06-25 |
+|          5 | Ethan Hunt    |   25 | San Francisco | ethan@example.com   |             3000.00 | 2022-12-05 |
++------------+---------------+------+---------------+---------------------+---------------------+------------+
+3 rows in set (0.001 sec)
+
+MariaDB [kg]> SELECT * FROM Customers
+    -> WHERE JoinDate > '2022-01-01';
++------------+---------------+------+---------------+-------------------+---------------------+------------+
+| CustomerID | Name          | Age  | City          | Email             | TotalPurchaseAmount | JoinDate   |
++------------+---------------+------+---------------+-------------------+---------------------+------------+
+|          1 | Alice Johnson |   28 | New York      | alice@example.com |             1200.50 | 2022-01-15 |
+|          4 | Diana Prince  |   30 | New York      | diana@example.com |              500.75 | 2023-03-18 |
+|          5 | Ethan Hunt    |   25 | San Francisco | ethan@example.com |             3000.00 | 2022-12-05 |
++------------+---------------+------+---------------+-------------------+---------------------+------------+
+3 rows in set (0.001 sec)
+
+MariaDB [kg]> SELECT * FROM Customers
+    -> WHERE JoinDate > '2022-01-01';
++------------+---------------+------+---------------+-------------------+---------------------+------------+
+| CustomerID | Name          | Age  | City          | Email             | TotalPurchaseAmount | JoinDate   |
++------------+---------------+------+---------------+-------------------+---------------------+------------+
+|          1 | Alice Johnson |   28 | New York      | alice@example.com |             1200.50 | 2022-01-15 |
+|          4 | Diana Prince  |   30 | New York      | diana@example.com |              500.75 | 2023-03-18 |
+|          5 | Ethan Hunt    |   25 | San Francisco | ethan@example.com |             3000.00 | 2022-12-05 |
++------------+---------------+------+---------------+-------------------+---------------------+------------+
+3 rows in set (0.001 sec)
+
+MariaDB [kg]> SELECT * FROM Customers
+    -> WHERE 1=1
+    ->   AND (Age > @age OR @age IS NULL)
+    ->   AND (City = @city OR @city IS NULL)
+    ->   AND (TotalPurchaseAmount > @minPurchase OR @minPurchase IS NULL)
+    ->   AND (JoinDate > @joinDate OR @joinDate IS NULL);
++------------+---------------+------+---------------+---------------------+---------------------+------------+
+| CustomerID | Name          | Age  | City          | Email               | TotalPurchaseAmount | JoinDate   |
++------------+---------------+------+---------------+---------------------+---------------------+------------+
+|          1 | Alice Johnson |   28 | New York      | alice@example.com   |             1200.50 | 2022-01-15 |
+|          2 | Bob Smith     |   35 | Los Angeles   | bob@example.com     |              800.00 | 2021-11-10 |
+|          3 | Charlie Brown |   42 | Chicago       | charlie@example.com |             1500.00 | 2020-06-25 |
+|          4 | Diana Prince  |   30 | New York      | diana@example.com   |              500.75 | 2023-03-18 |
+|          5 | Ethan Hunt    |   25 | San Francisco | ethan@example.com   |             3000.00 | 2022-12-05 |
++------------+---------------+------+---------------+---------------------+---------------------+------------+
+5 rows in set (0.001 sec)
+
+MariaDB [kg]> SELECT * FROM Customers
+    -> WHERE 1=1
+    ->   AND (Age > @age OR @age IS NULL)
+    ->   AND (City = @city OR @city IS NULL)
+    ->   AND (TotalPurchaseAmount > @minPurchase OR @minPurchase IS NULL)
+    ->   AND (JoinDate > @joinDate OR @joinDate IS NULL);
++------------+---------------+------+---------------+---------------------+---------------------+------------+
+| CustomerID | Name          | Age  | City          | Email               | TotalPurchaseAmount | JoinDate   |
++------------+---------------+------+---------------+---------------------+---------------------+------------+
+|          1 | Alice Johnson |   28 | New York      | alice@example.com   |             1200.50 | 2022-01-15 |
+|          2 | Bob Smith     |   35 | Los Angeles   | bob@example.com     |              800.00 | 2021-11-10 |
+|          3 | Charlie Brown |   42 | Chicago       | charlie@example.com |             1500.00 | 2020-06-25 |
+|          4 | Diana Prince  |   30 | New York      | diana@example.com   |              500.75 | 2023-03-18 |
+|          5 | Ethan Hunt    |   25 | San Francisco | ethan@example.com   |             3000.00 | 2022-12-05 |
++------------+---------------+------+---------------+---------------------+---------------------+------------+
+5 rows in set (0.000 sec)
+
