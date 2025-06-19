@@ -1,0 +1,83 @@
+ CREATE TABLE S (
+    ->     StudentID INT PRIMARY KEY,
+    ->     Name VARCHAR(100),
+    ->     Age INT,
+    ->     CourseID INT,
+    ->     Marks INT
+    -> )
+    ->
+    -> ;
+Query OK, 0 rows affected (0.078 sec)
+
+MariaDB [kg]> INSERT INTO S (StudentID, Name, Age, CourseID, Marks) VALUES
+    -> (1, 'Alice', 20, 101, 85),
+    -> (2, 'Bob', 22, 102, 78),
+    -> (3, 'Charlie', 21, 101, 92),
+    -> (4, 'Diana', 19, 103, 65),
+    -> (5, 'Ethan', 23, 102, 88);
+Query OK, 5 rows affected (0.007 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [kg]> SELECT * FROM S
+    -> WHERE Marks > 80;
++-----------+---------+------+----------+-------+
+| StudentID | Name    | Age  | CourseID | Marks |
++-----------+---------+------+----------+-------+
+|         1 | Alice   |   20 |      101 |    85 |
+|         3 | Charlie |   21 |      101 |    92 |
+|         5 | Ethan   |   23 |      102 |    88 |
++-----------+---------+------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [kg]> CREATE TABLE Cours (
+    ->     CourseID INT PRIMARY KEY,
+    ->     CourseName VARCHAR(100),
+    ->     Fees DECIMAL(10, 2)
+    -> );
+Query OK, 0 rows affected (0.059 sec)
+
+MariaDB [kg]>
+MariaDB [kg]> INSERT INTO Cours (CourseID, CourseName, Fees) VALUES
+    -> (101, 'Mathematics', 1500.00),
+    -> (102, 'Physics', 1700.00),
+    -> (103, 'Chemistry', 1600.00);
+Query OK, 3 rows affected (0.004 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [kg]> SELECT * FROM Cours
+    -> ORDER BY Fees ASC;
++----------+-------------+---------+
+| CourseID | CourseName  | Fees    |
++----------+-------------+---------+
+|      101 | Mathematics | 1500.00 |
+|      103 | Chemistry   | 1600.00 |
+|      102 | Physics     | 1700.00 |
++----------+-------------+---------+
+3 rows in set (0.000 sec)
+
+MariaDB [kg]> CREATE TABLE Books (
+    ->     BookID INT PRIMARY KEY,
+    ->     Title VARCHAR(200),
+    ->     Author VARCHAR(100),
+    ->     Price DECIMAL(10, 2)
+    -> );
+Query OK, 0 rows affected (0.047 sec)
+
+MariaDB [kg]>
+MariaDB [kg]> INSERT INTO Books (BookID, Title, Author, Price) VALUES
+    -> (1, 'Introduction to Mathematics', 'John Doe', 45.00),
+    -> (2, 'Advanced Physics', 'Jane Smith', 55.00),
+    -> (3, 'Basic Chemistry', 'Emily Johnson', 40.00),
+    -> (4, 'Physics Experiments', 'Jane Smith', 50.00);
+Query OK, 4 rows affected (0.004 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [kg]> SELECT * FROM Books
+    -> WHERE Title LIKE '%Physics%';
++--------+---------------------+------------+-------+
+| BookID | Title               | Author     | Price |
++--------+---------------------+------------+-------+
+|      2 | Advanced Physics    | Jane Smith | 55.00 |
+|      4 | Physics Experiments | Jane Smith | 50.00 |
++--------+---------------------+------------+-------+
+2 rows in set (0.001 sec)
